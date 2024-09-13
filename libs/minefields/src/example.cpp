@@ -1,0 +1,3 @@
+void doNothing() {
+    // Do nothing
+}

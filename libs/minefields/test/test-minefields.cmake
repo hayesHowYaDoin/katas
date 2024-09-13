@@ -1,21 +1,21 @@
-add_executable(test-example)
+add_executable(test-minefields)
 
 file(GLOB_RECURSE tests CONFIGURE_DEPENDS "${CMAKE_CURRENT_SOURCE_DIR}/test_*.cpp")
 file(GLOB_RECURSE headers CONFIGURE_DEPENDS "${CMAKE_CURRENT_SOURCE_DIR}/*.h")
-target_sources(test-example PRIVATE ${tests} ${headers})
+target_sources(test-minefields PRIVATE ${tests} ${headers})
 
-target_include_directories(test-example
+target_include_directories(test-minefields
     PUBLIC
         $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>
-        $<INSTALL_INTERFACE:test-example-${PROJECT_VERSION}>
+        $<INSTALL_INTERFACE:test-minefields-${PROJECT_VERSION}>
 )
 
-target_link_libraries(test-example
+target_link_libraries(test-minefields
     PUBLIC
         GTest::GTest
         GTest::Main
     PRIVATE 
-        katas::example
+        katas::minefields
 )
 
-gtest_discover_tests(test-example)
+gtest_discover_tests(test-minefields)

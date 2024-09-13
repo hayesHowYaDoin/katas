@@ -1,11 +1,8 @@
-# C++ Library Template
+# C++ Coding Katas
 
-This repository hosts a template to be used as a starting point for creating 
-standard C++ libraries. The layout is inspired by the 
-[Pitchfork Layout (PFL)][1], and uses a Docker Dev Container with VSCode. The 
-included example code provides an example of how to utilize the layout in 
-order to create a split between private and public headers using the 
-[pImpl pattern][2].
+This repository hosts my solutions to various coding katas written in C++ 20.
+
+# Development Instructions
 
 ## Prerequisites
 
@@ -24,6 +21,3 @@ in a Dev Container.
 the command "Dev Containers: Open Folder In Container..."
 
 And... that's it!
-
-[1]: https://api.csswg.org/bikeshed/?force=1&url=https://raw.githubusercontent.com/vector-of-bool/pitchfork/develop/data/spec.bs
-[2]: https://en.cppreference.com/w/cpp/language/pimpl

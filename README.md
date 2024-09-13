@@ -2,16 +2,16 @@
 
 This repository hosts my solutions to various coding katas written in C++ 20.
 
-# Development Instructions
+## Developer Setup
 
-## Prerequisites
+### Prerequisites
 
 The following instructions assume that Docker, VSCode and Git are installed on 
 the host computer. The VSCode extension Remote Development 
 (ms-vscode-remote.vscode-remote-extensionpack) is required to open the project 
 in a Dev Container. 
 
-## Setting Up The Development Environment
+### Setting Up The Development Environment
 
 1) Clone the repository onto the host computer with the following command:
    ```

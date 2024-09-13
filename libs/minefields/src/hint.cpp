@@ -14,7 +14,7 @@ Hintfield::Hintfield(size_t rows, size_t columns, std::unordered_set<FieldPositi
     }
 }
 
-std::vector<std::vector<HintfieldCell>> field() const {
+std::vector<std::vector<HintfieldCell>> Hintfield::field() const {
     return m_field;
 }
 

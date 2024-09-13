@@ -27,14 +27,12 @@ struct FieldPosition {
     }
 };
 
-namespace std {
-    template <>
-    struct hash<FieldPosition> {
-        size_t operator()(FieldPosition const& position) const noexcept {
-            return std::hash<size_t>{}(position.row) ^ (std::hash<size_t>{}(position.column) << 1);
-        }
-    };
-}
+template <>
+struct std::hash<FieldPosition> {
+    size_t operator()(FieldPosition const& position) const noexcept {
+        return std::hash<size_t>{}(position.row) ^ (std::hash<size_t>{}(position.column) << 1);
+    }
+};
 
 using HintfieldCell = std::variant<Mine, Number>;
 

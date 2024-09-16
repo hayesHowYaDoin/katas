@@ -1,20 +1,22 @@
 #include <array>
 
-#include "minefields/hint.h"
+#include "minefields/core.h"
 
 
-Hintfield::Hintfield(size_t rows, size_t columns, std::unordered_set<FieldPosition> const& minePositions)
-    : m_field {rows, std::vector<HintfieldCell>(columns, Mine())} {
+namespace minefields::core {
+
+Hintfield::Hintfield(size_t rows, size_t columns, std::unordered_set<CellPosition> const& minePositions)
+    : m_field {rows, std::vector<Cell>(columns, Mine())} {
     for(size_t rowIndex {0}; rowIndex < rows; ++rowIndex) {
         for(size_t columnIndex {0}; columnIndex < columns; ++columnIndex) {
-            if(minePositions.count(FieldPosition{rowIndex, columnIndex}) == 0) {
+            if(minePositions.count(CellPosition{rowIndex, columnIndex}) == 0) {
                 m_field.at(rowIndex).at(columnIndex) = countNeighbors(rowIndex, columnIndex, minePositions);
             }
         }
     }
 }
 
-std::vector<std::vector<HintfieldCell>> Hintfield::field() const {
+std::vector<std::vector<Cell>> Hintfield::field() const {
     return m_field;
 }
 
@@ -29,7 +31,7 @@ size_t Hintfield::columns() const {
 Number Hintfield::countNeighbors(
     size_t row,
     size_t column,
-    std::unordered_set<FieldPosition> const& minePositions) {
+    std::unordered_set<CellPosition> const& minePositions) {
     auto castRow {static_cast<int32_t>(row)};
     auto castColumn {static_cast<int32_t>(column)};
 
@@ -50,7 +52,7 @@ Number Hintfield::countNeighbors(
             continue;
         }
 
-        auto position {FieldPosition{
+        auto position {CellPosition{
             static_cast<size_t>(coordinate.first),
             static_cast<size_t>(coordinate.second)
         }};
@@ -62,3 +64,13 @@ Number Hintfield::countNeighbors(
 
     return Number{mineCount};
 }
+
+bool operator==(Mine const& first, Mine const& second) {
+    return true;
+}
+
+bool operator==(Number const& first, Number const& second) {
+    return first.value == second.value;
+}
+
+} // namespace minefields::core

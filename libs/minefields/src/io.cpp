@@ -36,7 +36,7 @@ getHints(std::istream& input, std::ostream& output)
                 output << std::to_string(std::get<core::Number>(cell).value);
             }
             else {
-                throw std::logic_error("Variant not implemented!");
+                throw HintException("Variant not implemented!");
             }
         }
         output << std::endl;

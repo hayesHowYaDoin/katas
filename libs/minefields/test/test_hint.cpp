@@ -2,8 +2,8 @@
 
 #include "minefields/core.h"
 
-
-TEST(HintTest, NoMines) {
+TEST(HintTest, NoMines)
+{
     using namespace minefields::core;
 
     Hintfield hints(2, 2, {});
@@ -17,24 +17,24 @@ TEST(HintTest, NoMines) {
     }
 }
 
-TEST(HintTest, Mines) {
+TEST(HintTest, Mines)
+{
     using namespace minefields::core;
 
-    std::unordered_set<CellPosition> mines {
-        {1, 1},
-        {2, 1},
-        {4, 2},
+    std::unordered_set<CellPosition> mines{
+        { 1, 1 },
+        { 2, 1 },
+        { 4, 2 },
     };
     Hintfield hints(5, 3, mines);
 
-    std::vector<std::vector<Cell>> expectedField {
-        {Number{1}, Number{1}, Number{1}},
-        {Number{2}, Mine{},    Number{2}},
-        {Number{2}, Mine{},    Number{2}},
-        {Number{1}, Number{2}, Number{2}},
-        {Number{0}, Number{1}, Mine{}},
+    std::vector<std::vector<Cell> > expectedField{
+        { Number{ 1 }, Number{ 1 }, Number{ 1 } },
+        { Number{ 2 }, Mine{}, Number{ 2 } },
+        { Number{ 2 }, Mine{}, Number{ 2 } },
+        { Number{ 1 }, Number{ 2 }, Number{ 2 } },
+        { Number{ 0 }, Number{ 1 }, Mine{} },
     };
-    
 
     EXPECT_EQ(hints.field(), expectedField);
 }

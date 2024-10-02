@@ -18,13 +18,22 @@ class MinefieldException : public std::runtime_error {
 };
 
 struct Mine {
-    friend bool operator==(Mine const& first, Mine const& second);
+    friend bool
+    operator==([[maybe_unused]] Mine const& first,
+               [[maybe_unused]] Mine const& second)
+    {
+        return true;
+    }
 };
 
 struct Number {
     uint8_t value;
 
-    friend bool operator==(Number const& first, Number const& second);
+    friend bool
+    operator==(Number const& first, Number const& second)
+    {
+        return first.value == second.value;
+    }
 };
 
 using Cell = std::variant<Mine, Number>;

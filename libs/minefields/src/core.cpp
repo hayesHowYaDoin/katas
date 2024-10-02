@@ -25,13 +25,13 @@ countNeighbors(size_t row, size_t column,
     };
 
     uint8_t mineCount{ 0 };
-    for(auto const& coordinate : coordinates) {
-        if(coordinate.first < 0 || coordinate.second < 0) {
+    for(auto const& [adjacentRow, adjacentColumn] : coordinates) {
+        if(adjacentRow < 0 || adjacentColumn < 0) {
             continue;
         }
 
-        auto position{ CellPosition{ static_cast<size_t>(coordinate.first),
-                                     static_cast<size_t>(coordinate.second) } };
+        auto position{ CellPosition{ static_cast<size_t>(adjacentRow),
+                                     static_cast<size_t>(adjacentColumn) } };
 
         if(minePositions.count(position)) {
             ++mineCount;
@@ -74,18 +74,6 @@ size_t
 Hintfield::columns() const
 {
     return m_field.at(0).size();
-}
-
-bool
-operator==(Mine const& first, Mine const& second)
-{
-    return true;
-}
-
-bool
-operator==(Number const& first, Number const& second)
-{
-    return first.value == second.value;
 }
 
 } // namespace minefields::core

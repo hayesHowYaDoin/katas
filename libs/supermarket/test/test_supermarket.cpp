@@ -8,8 +8,7 @@ TEST(SupermarketTest, TwentyPercentOff)
 
     Item cheese{ "cheese", Price(0.25f) };
 
-    std::unordered_map<Item, ItemCount> items = { { cheese, 10 } };
-    Cart cart{ items };
+    Cart cart{ { { cheese, 10 } } };
 
     // Define a discount function
     Discount twentyPercentOff = [](Price const& totalPrice, size_t itemCount) {

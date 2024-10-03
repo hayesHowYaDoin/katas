@@ -92,8 +92,8 @@ using ItemCount = uint32_t;
 
 class Cart {
   public:
-    explicit Cart(std::unordered_map<Item, ItemCount> const& items)
-        : m_items{ items }
+    explicit Cart(std::unordered_map<Item, ItemCount> items)
+        : m_items{ std::move(items) }
     {
         // Intentionally left blank.
     }

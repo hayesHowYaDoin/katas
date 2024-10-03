@@ -23,4 +23,17 @@ calculateCartPrice(
     return total;
 }
 
+Price
+buyOneGetSomeFree(Price const& totalPrice, [[maybe_unused]] size_t itemCount,
+                  uint32_t numberFree)
+{
+    return totalPrice / static_cast<float>(numberFree + 1);
+}
+
+Price
+percentOff(Price const& totalPrice, size_t itemCount, float discountFraction)
+{
+    return totalPrice * discountFraction;
+}
+
 } // namespace supermarket

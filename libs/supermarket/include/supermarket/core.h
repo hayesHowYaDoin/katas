@@ -2,6 +2,7 @@
 #define SUPERMARKET_CORE_H
 
 #include <cmath>
+#include <concepts>
 #include <cstdint>
 #include <functional>
 #include <string>
@@ -41,6 +42,18 @@ class Price {
         return lhs + rhs;
     }
 
+    friend Price
+    operator/(Price const& lhs, float rhs)
+    {
+        return Price{ lhs.raw() / rhs };
+    }
+
+    friend Price
+    operator*(Price const& lhs, float rhs)
+    {
+        return Price{ lhs.raw() * rhs };
+    }
+
   private:
     float m_value;
 };
@@ -76,13 +89,19 @@ using Discount = std::function<Price(Price const&, size_t)>;
     Cart const& cart,
     std::unordered_map<Item, std::vector<Discount> > const& discounts);
 
+[[nodiscard]] Price buyOneGetSomeFree(Price const& totalPrice, size_t itemCount,
+                                      uint32_t numberFree);
+
+[[nodiscard]] Price percentOff(Price const& totalPrice, size_t itemCount,
+                               float discount);
+
 } // namespace supermarket
 
 struct std::hash<supermarket::Item> {
     size_t
     operator()(supermarket::Item const& item) const noexcept
     {
-        return std::hash<float>{}(item.unitPrice)
+        return std::hash<float>{}(item.unitPrice.raw())
                ^ (std::hash<std::string>{}(item.name) << 1);
     }
 };

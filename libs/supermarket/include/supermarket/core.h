@@ -1,8 +1,56 @@
 #ifndef SUPERMARKET_CORE_H
 #define SUPERMARKET_CORE_H
 
+#include <cmath>
+#include <functional>
+#include <string>
+#include <unordered_map>
+#include <vector>
+
 namespace supermarket {
 
+class Price {
+  public:
+    [[nodiscard]] constexpr float
+    raw() const
+    {
+        return m_value;
+    }
+
+    [[nodiscard]] constexpr float
+    rounded() const
+    {
+        return std::round(m_value * 100.0f) / 100.0f;
+    }
+
+  private:
+    float m_value;
+};
+
+struct Item {
+    std::string name;
+    float unitPrice;
+};
+
+struct Cart {
+    std::vector<Item> items;
+};
+
+using Discounts = std::function<float(Price const&, size_t)>;
+
+[[nodiscard]] Price
+calculateCartPrice(Cart const& cart,
+                   std::unordered_map<Item, Discounts> const& discounts);
+
 } // namespace supermarket
+
+struct std::hash<supermarket::Item> {
+    size_t
+    operator()(supermarket::Item const& item) const noexcept
+    {
+        return std::hash<float>{}(item.unitPrice)
+               ^ (std::hash<std::string>{}(item.name) << 1);
+    }
+};
 
 #endif // SUPERMARKET_CORE_H

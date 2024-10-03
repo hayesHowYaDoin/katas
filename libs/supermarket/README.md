@@ -1,28 +1,35 @@
-# Minefields
+# Supermarket Pricing
 
 ## Problem Description
 
-A field of N x M squares is represented by N lines of
-exactly M characters each. The character '*' represents
-a mine and the character '.' represents no-mine.
+*The following text is taken directly from the source linked at the bottom of this readme.*
 
-Example input (a 4 x 3 mine-field of 12 squares, 2 of
-which are mines)
+This kata arose from some discussions we’ve been having at the DFW Practioners meetings. The problem domain is something seemingly simple: pricing goods at supermarkets.
 
-4 3\
-\*...\
-..\*.\
-....
+Some things in supermarkets have simple prices: this can of beans costs $0.65. Other things have more complex prices. For example:
 
-Your task is to write a program to accept this input and
-produce as output a hint-field of identical dimensions
-where each square is a * for a mine or the number of
-adjacent mine-squares if the square does not contain a mine.
+    three for a dollar (so what’s the price if I buy 4, or 5?)
+    $1.99/pound (so what does 4 ounces cost?)
+    buy two, get one free (so does the third item have a price?)
 
-Example output (for the above input)
+This kata involves no coding. The exercise is to experiment with various models for representing money and prices that are flexible enough to deal with these (and other) pricing schemes, and at the same time are generally usable (at the checkout, for stock management, order entry, and so on). Spend time considering issues such as:
 
-\*211\
-12\*1\
-0111
+    does fractional money exist?
+    when (if ever) does rounding take place?
+    how do you keep an audit trail of pricing decisions (and do you need to)?
+    are costs and prices the same class of thing?
+    if a shelf of 100 cans is priced using “buy two, get one free”, how do you value the stock?
 
-(source: https://github.com/garora/TDD-Katas/blob/main/KatasReadme.md)
+This is an ideal shower-time kata, but be careful. Some of the problems are more subtle than they first appear. I suggest that it might take a couple of weeks worth of showers to exhaust the main alternatives.
+
+### Goal
+
+The goal of this kata is to practice a looser style of experimental modelling. Look for as many different ways of handling the issues as possible. Consider the various tradeoffs of each. What techniques are best for exploring these models? For recording them? How can you validate a model is reasonable?
+
+## Personal Interpretation
+
+I will choose to approach this problem as an hour-long design session. I will document my thoughts on the requirements for such 
+a system in this first 20 minutes, then implement the core logic in the remaining 40 minutes. Any diagrams or notes can be found 
+in the docs folder of this library.
+
+(source: http://codekata.com/kata/kata01-supermarket-pricing/)

@@ -1,5 +1,5 @@
-#ifndef SUPERMARKET_CORE_H
-#define SUPERMARKET_CORE_H
+#ifndef SUPERMARKET_SUPERMARKET_H
+#define SUPERMARKET_SUPERMARKET_H
 
 #include <cmath>
 #include <concepts>
@@ -36,10 +36,11 @@ class Price {
         return Price{ lhs.raw() + rhs.raw() };
     }
 
-    friend Price
-    operator+=(Price const& lhs, Price const& rhs)
+    Price&
+    operator+=(Price const& other)
     {
-        return lhs + rhs;
+        m_value += other.raw();
+        return *this;
     }
 
     friend Price
@@ -61,7 +62,31 @@ class Price {
 struct Item {
     std::string name;
     Price unitPrice;
+
+    friend bool
+    operator==(Item const& lhs, Item const& rhs)
+    {
+        return lhs.name == rhs.name;
+    }
 };
+
+} // namespace Item
+
+namespace std {
+
+template <>
+struct hash<supermarket::Item> {
+    size_t
+    operator()(supermarket::Item const& item) const noexcept
+    {
+        return std::hash<float>{}(item.unitPrice.raw())
+               ^ (std::hash<std::string>{}(item.name) << 1);
+    }
+};
+
+} // namespace std
+
+namespace supermarket {
 
 using ItemCount = uint32_t;
 
@@ -85,7 +110,7 @@ class Cart {
 
 using Discount = std::function<Price(Price const&, size_t)>;
 
-[[nodiscard]] Price calculateCartPrice(
+[[nodiscard]] Price calculateCartTotal(
     Cart const& cart,
     std::unordered_map<Item, std::vector<Discount> > const& discounts);
 
@@ -97,13 +122,4 @@ using Discount = std::function<Price(Price const&, size_t)>;
 
 } // namespace supermarket
 
-struct std::hash<supermarket::Item> {
-    size_t
-    operator()(supermarket::Item const& item) const noexcept
-    {
-        return std::hash<float>{}(item.unitPrice.raw())
-               ^ (std::hash<std::string>{}(item.name) << 1);
-    }
-};
-
-#endif // SUPERMARKET_CORE_H
+#endif // SUPERMARKET_SUPERMARKET_H

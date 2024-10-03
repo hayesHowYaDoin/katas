@@ -1,9 +1,9 @@
-#include "supermarket/core.h"
+#include "supermarket/supermarket.h"
 
 namespace supermarket {
 
 [[nodiscard]] Price
-calculateCartPrice(
+calculateCartTotal(
     Cart const& cart,
     std::unordered_map<Item, std::vector<Discount> > const& discounts)
 {
@@ -31,7 +31,8 @@ buyOneGetSomeFree(Price const& totalPrice, [[maybe_unused]] size_t itemCount,
 }
 
 Price
-percentOff(Price const& totalPrice, size_t itemCount, float discountFraction)
+percentOff(Price const& totalPrice, [[maybe_unused]] size_t itemCount,
+           float discountFraction)
 {
     return totalPrice * discountFraction;
 }

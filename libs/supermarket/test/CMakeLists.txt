@@ -1,0 +1,1 @@
+include(test-supermarket.cmake)

@@ -28,8 +28,8 @@ The goal of this kata is to practice a looser style of experimental modelling. L
 
 ## Personal Interpretation
 
-I will choose to approach this problem as an hour-long design session. I will document my thoughts on the requirements for such 
-a system in this first 30 minutes, then implement the core logic in the remaining 30 minutes. Any diagrams or notes can be found 
+I will choose to approach this problem as a 90-minute design session. I will document my thoughts on the requirements for such 
+a system in this first 30 minutes, then implement the core logic in the remaining 60 minutes. Any diagrams or notes can be found 
 in the docs folder of this library.
 
 (source: http://codekata.com/kata/kata01-supermarket-pricing/)

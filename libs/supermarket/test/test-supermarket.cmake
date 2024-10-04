@@ -12,8 +12,8 @@ target_include_directories(test-supermarket
 
 target_link_libraries(test-supermarket
     PUBLIC
-        GTest::GTest
-        GTest::Main
+        GTest::gtest
+        GTest::gtest_main
     PRIVATE 
         katas::supermarket
 )

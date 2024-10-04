@@ -12,8 +12,8 @@ target_include_directories(test-minefields
 
 target_link_libraries(test-minefields
     PUBLIC
-        GTest::GTest
-        GTest::Main
+        GTest::gtest
+        GTest::gtest_main
     PRIVATE 
         katas::minefields
 )

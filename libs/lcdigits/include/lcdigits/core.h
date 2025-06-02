@@ -1,6 +1,7 @@
 #ifndef LCDIGITS_CORE_H
 #define LCDIGITS_CORE_H
 
+#include <algorithm>
 #include <array>
 #include <cstdint>
 #include <stdexcept>
@@ -52,6 +53,8 @@ splitNumberToDigits(uint32_t value)
         digits.at(digitIndex) = Digit::build(static_cast<uint8_t>(value % 10));
         value /= 10;
     }
+
+    std::reverse(digits.begin(), digits.end());
 
     return digits;
 }

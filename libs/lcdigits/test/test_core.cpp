@@ -39,7 +39,7 @@ TEST(LCDigitsTest, SplitNumberIntoDigitsFull)
 {
     static constexpr auto digits{ lcdigits::detail::splitNumberToDigits<5>(
         12345) };
-    static constexpr std::array<uint8_t, 5> expectedDigits{ 5, 4, 3, 2, 1 };
+    static constexpr std::array<uint8_t, 5> expectedDigits{ 1, 2, 3, 4, 5 };
     for(size_t digitIndex{ 0 }; digitIndex < 5; ++digitIndex) {
         EXPECT_EQ(digits.at(digitIndex),
                   lcdigits::Digit::build(expectedDigits.at(digitIndex)));
@@ -50,7 +50,7 @@ TEST(LCDigitsTest, SplitNumberIntoDigitsPartial)
 {
     static constexpr auto digits{ lcdigits::detail::splitNumberToDigits<5>(
         789) };
-    static constexpr std::array<uint8_t, 5> expectedDigits{ 9, 8, 7, 0, 0 };
+    static constexpr std::array<uint8_t, 5> expectedDigits{ 0, 0, 7, 8, 9 };
     for(size_t digitIndex{ 0 }; digitIndex < 5; ++digitIndex) {
         EXPECT_EQ(digits.at(digitIndex),
                   lcdigits::Digit::build(expectedDigits.at(digitIndex)));

@@ -1,0 +1,1 @@
+include(test-lcdigits.cmake)

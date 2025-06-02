@@ -1,2 +1,3 @@
+add_subdirectory(lcdigits)
 add_subdirectory(minefields)
 add_subdirectory(supermarket)

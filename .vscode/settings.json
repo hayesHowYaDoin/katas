@@ -70,7 +70,11 @@
         "typeinfo": "cpp",
         "unordered_set": "cpp",
         "cinttypes": "cpp",
-        "text_encoding": "cpp"
+        "text_encoding": "cpp",
+        "csignal": "cpp",
+        "cstring": "cpp",
+        "forward_list": "cpp",
+        "list": "cpp"
     },
     "editor.formatOnSave": true,
     "C_Cpp.clang_format_style": "file",

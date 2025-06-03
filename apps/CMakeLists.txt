@@ -1,1 +1,2 @@
+add_subdirectory(lcdigits)
 add_subdirectory(minefields)

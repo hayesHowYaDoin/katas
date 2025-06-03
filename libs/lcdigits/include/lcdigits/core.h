@@ -4,6 +4,8 @@
 #include <algorithm>
 #include <array>
 #include <cstdint>
+#include <iostream>
+#include <ranges>
 #include <stdexcept>
 #include <string_view>
 
@@ -64,28 +66,36 @@ splitNumberToDigits(uint32_t value)
 template <size_t N>
 class Number {
   public:
-    Number(std::array<Digit, N> digits) : m_digits{ std::move(digits) }
+    constexpr
+    Number(std::array<Digit, N> digits)
+        : m_digits{ std::move(digits) }
     {
         // Intentionally left blank.
     }
 
     [[nodiscard]] static constexpr Number<N>
-    fromDigit(uint32_t value)
+    fromNumber(uint32_t value)
     {
         return { detail::splitNumberToDigits<N>(value) };
     }
 
-    [[nodiscard]] constexpr std::string_view
+    [[nodiscard]] std::string
     getString() const
     {
+        auto isZero
+            = [](Digit const& digit) { return digit == Digit::build(0); };
+
         std::string result;
         for(size_t rowIndex{ 0 }; rowIndex < 3; ++rowIndex) {
-            for(auto const& digit : m_digits) {
-                result += digit.rows.at(rowIndex);
-                if(rowIndex == 2) {
-                    result += " ";
-                }
+            for(auto const& digit : m_digits | std::views::take_while(isZero)) {
+                result += std::string(3, ' ');
             }
+
+            for(auto const& digit : m_digits | std::views::drop_while(isZero)) {
+                result += digit.rows.at(rowIndex);
+            }
+
+            result += '\n';
         }
 
         return result;

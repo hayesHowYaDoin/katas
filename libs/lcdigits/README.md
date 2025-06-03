@@ -13,9 +13,9 @@ is shown below (using a dot instead of a space).
 
 Example: 910
 
-._. ... ._.
-|_| ..| |.|
-..| ..| |_|
+._....._.
+|_|..||.|
+..|..||_|
 
 Additional requirements: 
 

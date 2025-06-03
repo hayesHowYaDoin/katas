@@ -74,7 +74,8 @@
         "csignal": "cpp",
         "cstring": "cpp",
         "forward_list": "cpp",
-        "list": "cpp"
+        "list": "cpp",
+        "ranges": "cpp"
     },
     "editor.formatOnSave": true,
     "C_Cpp.clang_format_style": "file",

@@ -57,16 +57,19 @@ TEST(LCDigitsTest, SplitNumberIntoDigitsPartial)
     }
 }
 
-// class LCDigitsNumberTest
-//     : public ::testing::TestWithParam<std::tuple<int, std::string> > {};
+class LCDigitsNumberTest
+    : public ::testing::TestWithParam<std::tuple<int, std::string> > {};
 
-// INSTANTIATE_TEST_SUITE_P(LCDigitsNumberTest, LCDigitsNumberTest,
-//                          ::testing::Values(std::make_tuple(5,
-//                                                            " _ \n|_ \n
-//                                                            _|\n")));
+INSTANTIATE_TEST_SUITE_P(
+    LCDigitsNumberTest, LCDigitsNumberTest,
+    ::testing::Values(std::make_tuple(5, "       _ \n      |_ \n       _|\n"),
+                      std::make_tuple(12, "       _ \n     | _|\n     ||_ \n"),
+                      std::make_tuple(333,
+                                      " _  _  _ \n _| _| _|\n _| _| _|\n")));
 
-// TEST_P(LCDigitsNumberTest, Number)
-// {
-//     auto [number, expected]{ GetParam() };
-//     auto lcdNumber{ lcdigits::Number(number) };
-// }
+TEST_P(LCDigitsNumberTest, Number)
+{
+    auto [number, expected]{ GetParam() };
+    auto lcdNumber{ lcdigits::Number<3>::fromNumber(number) };
+    EXPECT_EQ(lcdNumber.getString(), expected);
+}
